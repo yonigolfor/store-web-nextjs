@@ -1,0 +1,24 @@
+.cartImg {
+  width: 20%;
+}
+
+.title {
+  font-size: 18px;
+  color: black;
+}
+
+.text {
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.inputNumber {
+  width: 13%;
+  font-size: 18px;
+  margin: 3px;
+}
+
+.product {
+  padding: 8px;
+  margin: 0;
+}

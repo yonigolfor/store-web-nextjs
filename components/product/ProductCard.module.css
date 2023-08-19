@@ -1,0 +1,8 @@
+.ProductCard {
+  background-color: antiquewhite;
+  /* width: 90%; */
+  border: 1px solid black;
+  width: 18rem;
+  height: fit-content;
+  text-align: center;
+}

@@ -1,0 +1,37 @@
+.title {
+  font-size: 30px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 300;
+  /* font-style: italic; */
+  border-bottom: 1px solid gray;
+  text-align: end;
+  margin-right: 10px;
+  padding-right: 20px;
+}
+
+.container {
+  background-color: rgb(255, 233, 204);
+  height: fit-content;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: 50px;
+  /* padding: 5px; */
+  text-align: end;
+}
+
+.p_class {
+  padding: 5px;
+  font-weight: bold;
+}
+
+.button_class {
+  width: 100%;
+  padding: 10;
+  margin: 0;
+}
+
+.productsContainer {
+  /* color: gray; */
+  text-align: end;
+}
