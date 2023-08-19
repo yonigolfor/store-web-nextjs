@@ -33,7 +33,7 @@ export default function Store({ products }) {
       <h1>!המוצרים שלנו</h1>
       <div style={{ marginLeft: 40 }}>
         <SplitRowContainer>
-          <ProductsList productsList={products} />
+          <ProductsList productsList={DUMMY_PRODUCTS} />
           <Cart />
         </SplitRowContainer>
       </div>
