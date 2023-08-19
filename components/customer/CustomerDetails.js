@@ -6,10 +6,12 @@ import { useRouter } from "next/router";
 
 export default function CustomerDetails() {
   const customerData = useSelector((state) => state.customer);
-  const paymentMethod =
-    useSelector((state) => state.cart.deliveryData).deliveryString || "";
+  const paymentMethod = useSelector(
+    (state) => state.cart.deliveryData.deliveryString
+  );
   const orderData = useSelector((state) => state.cart);
   const router = useRouter();
+  console.log(paymentMethod);
 
   const customerDetailsToString = () => {
     let str = "";

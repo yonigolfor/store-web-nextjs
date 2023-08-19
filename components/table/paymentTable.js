@@ -15,6 +15,7 @@ export default function PaymentTable() {
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const discountPercent = useSelector((state) => state.cart.discountPercent);
   console.log("totalPrice:", totalPrice);
+  console.log(deliveryData);
 
   // useEffect(() => {
   //   // effect on totalPrice DOM
@@ -41,7 +42,7 @@ export default function PaymentTable() {
       0
     );
 
-    if (deliveryData) totalPrice += deliveryData.deliveryPrice;
+    if (deliveryData.deliveryPrice) totalPrice += deliveryData.deliveryPrice;
     if (discountPercent) return priceAfterDiscount(totalPrice, discountPercent);
 
     return totalPrice;
@@ -66,7 +67,7 @@ export default function PaymentTable() {
             <td>{product.name}</td>
           </tr>
         ))}
-        {deliveryData ? (
+        {deliveryData.deliveryPrice ? (
           <tr>
             <td>{deliveryData.deliveryPrice}</td>
             <td></td>
@@ -82,15 +83,6 @@ export default function PaymentTable() {
           <td></td>
           <td>סה"כ</td>
         </tr>
-
-        {/* {productsList.reduc((product) => (
-          <tr key={product.name}>
-            <td>{product.pricePerUnit * product.counter}</td>
-            <td>{product.pricePerUnit}</td>
-            <td>{product.counter}</td>
-            <td>{product.name}</td>
-          </tr>
-        ))} */}
       </tbody>
     </Table>
   );

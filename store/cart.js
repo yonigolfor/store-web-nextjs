@@ -14,7 +14,7 @@ const initialCartState = {
 
   // possibility to add here the data of discountPercent, deliveryStyle
   discountPercent: null,
-  deliveryData: null,
+  deliveryData: { deliveryString: "", deliveryPrice: null },
 };
 
 function findProduct(productsList, productName) {
