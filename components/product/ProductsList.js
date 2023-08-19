@@ -8,15 +8,16 @@ export default function ProductsList({ productsList }) {
   return (
     <div className={classes.container}>
       <AddProductBtn />
-      {productsList.map((product) => (
-        <Product
-          productName={product.name}
-          image={product.image || DUMMY_IMAGE}
-          description={product.description || product.name}
-          price={product.price}
-          key={product.name}
-        />
-      ))}
+      {productList &&
+        productsList.map((product) => (
+          <Product
+            productName={product.name}
+            image={product.image || DUMMY_IMAGE}
+            description={product.description || product.name}
+            price={product.price}
+            key={product.name}
+          />
+        ))}
     </div>
   );
 }
