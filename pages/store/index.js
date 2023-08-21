@@ -3,37 +3,44 @@ import Header from "../../components/header";
 import ProductsList from "../../components/product/ProductsList";
 import SplitRowContainer from "../../components/dynamic-container/SplitRowContainer";
 import Cart from "../../components/cart/Cart";
-import AddProduct from "../../components/add/addProductBtn";
+import { useSelector } from "react-redux";
 
 const DUMMY_PRODUCTS = [
   {
-    name: "מוצר1",
+    name: "Demoמוצר1",
     image:
       "https://media.cnn.com/api/v1/images/stellar/prod/230621042149-01-cristiano-ronaldo-euro-200-apps-062023-restricted.jpg?c=16x9&q=h_720,w_1280,c_fill/f_webp",
     price: 10,
     description: "תיאור מוצר 1",
   },
   {
-    name: "מוצר2",
+    name: "Demoמוצר2",
     image:
       "https://i.guim.co.uk/img/media/3f183e3024872dc0280012487854dc5807048166/0_42_3600_2160/master/3600.jpg?width=1140&dpr=2&s=none",
     price: 20,
     description: "תיאור מוצר 2",
   },
-  { name: "מוצר3", price: 30, description: "תיאור מוצר 3" },
-  { name: "מוצר4", price: 40, description: "תיאור מוצר 4" },
-  { name: "מוצר5", price: 50, description: "תיאור מוצר 5" },
+  { name: "Demoמוצר3", price: 30, description: "תיאור מוצר 3" },
+  { name: "Demoמוצר4", price: 40, description: "תיאור מוצר 4" },
+  { name: "Demoמוצר5", price: 50, description: "תיאור מוצר 5" },
 ];
 
-export default function Store({ products }) {
+export default function Store() {
+  // get products
+  const prooductsFromDb = useSelector(
+    (state) => state.cart.allProductsAvailable
+  );
+  const products = [...prooductsFromDb, ...DUMMY_PRODUCTS];
   console.log("products:", products);
+  console.log("products from mongo:", prooductsFromDb);
+
   return (
     <Fragment>
       <Header />
       <h1>!המוצרים שלנו</h1>
       <div style={{ marginLeft: 40 }}>
         <SplitRowContainer>
-          <ProductsList productsList={DUMMY_PRODUCTS} />
+          <ProductsList productsList={products} />
           <Cart />
         </SplitRowContainer>
       </div>

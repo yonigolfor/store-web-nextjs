@@ -1,11 +1,19 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import Store from "./store/index";
 import { MongoClient } from "mongodb";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../store/cart";
 
 export default function Homepage({ products }) {
+  // update allProductsAvailable in cart
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(cartActions.setAllProductsAvailable(products));
+  }, []);
+
   return (
     <Fragment>
-      <Store products={products} />
+      <Store />
     </Fragment>
   );
 }

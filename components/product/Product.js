@@ -19,7 +19,12 @@ export default function Product({ productName, image, description, price }) {
   }
   return (
     <ProductCard prodId={productName}>
-      <img src={image} alt={productName} height={260} />
+      <img
+        src={image}
+        alt={productName}
+        // height={260} => back to Non-Dummy images requires change in height
+        height={180}
+      />
       <h2>{productName}</h2>
       <h4>{description}</h4>
       <h5>{price}</h5>

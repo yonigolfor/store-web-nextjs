@@ -11,7 +11,7 @@ export default function CustomerDetails() {
   );
   const orderData = useSelector((state) => state.cart);
   const router = useRouter();
-  console.log(paymentMethod);
+  // console.log(paymentMethod);
 
   const customerDetailsToString = () => {
     let str = "";
@@ -43,6 +43,27 @@ export default function CustomerDetails() {
 
     return orderDetailsStr;
   };
+
+  // async function sendMail() {
+  //   const emailData = {
+  //     customer_details: customerDetailsToString(),
+  //     orderDetails: orderDetailsToString(),
+  //   };
+  //   try {
+  //     const res = await fetch("/api/send-mail", {
+  //       method: "POST",
+  //       body: JSON.stringify(emailData),
+  //       headers: { "Content-Type": "application/json" },
+  //     });
+  //     const data = await res.json();
+  //     if (data.message.includes("error")) throw new Error(data.message);
+  //     console.log("data sent", data);
+
+  //     alert("email successfully sent check inbox");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   async function sendMail() {
     // send to email: productsList, totalPrice including discount if has, delivery,

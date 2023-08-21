@@ -4,13 +4,16 @@ import classes from "./newProductForm.module.css";
 import Image from "react-bootstrap/Image";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/cart";
 
 export default function NewProductForm({ handleClose }) {
   // connection to db
-  const [imageUploadBase64, setImageUploadBase64] = useState(null);
+  const [imageUploadBase64, setImageUploadBase64] = useState("");
   const prodNameRef = useRef();
   const prodPriceRef = useRef();
   const descriptionRef = useRef();
+  const dispatch = useDispatch();
 
   async function AddToDb(productData) {
     // productData = {
@@ -32,7 +35,7 @@ export default function NewProductForm({ handleClose }) {
     let reader = new FileReader();
     reader.readAsDataURL(fName);
     reader.onload = () => {
-      setImageUploadBase64(reader.result); //base64 encoded string
+      return reader.result; //base64 encoded string
     };
     reader.onerror = (error) => {
       console.log(error);
@@ -52,6 +55,8 @@ export default function NewProductForm({ handleClose }) {
 
     AddToDb(productData);
 
+    // update allAvailableProduct
+    dispatch(cartActions.addProductToAllProductsAvailable(productData));
     handleClose();
   };
 
@@ -82,17 +87,31 @@ export default function NewProductForm({ handleClose }) {
         placeholder="תיאור מוצר"
         style={{ margin: 5 }}
       />
-      <input
+      {/* Demo: gets url of image */}
+      <Form.Control
+        // className={classes.discountInput}
+        type="text"
+        placeholder="לינק לתמונה"
+        size="lg"
+        onChange={(e) => setImageUploadBase64(e.target.value)}
+        style={{ margin: 5 }}
+      />
+
+      {/* For now get only url and updates productsList */}
+      {/* <input
         className={classes.fileInput}
         accept="image/*"
         type="file"
         style={{ margin: 5 }}
-        onChange={(e) => convertToBase64(e.target.files[0])}
-      />
+        onChange={(e) =>
+          setImageUploadBase64(convertToBase64(e.target.files[0]))
+        }
+      /> 
+      // Shows the picked Image:
       {imageUploadBase64 ? (
         <img src={imageUploadBase64} width={180} height={250} />
       ) : null}
-
+*/}
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           בטל

@@ -15,6 +15,8 @@ const initialCartState = {
   // possibility to add here the data of discountPercent, deliveryStyle
   discountPercent: null,
   deliveryData: { deliveryString: "", deliveryPrice: null },
+  //
+  allProductsAvailable: [],
 };
 
 function findProduct(productsList, productName) {
@@ -118,6 +120,15 @@ const cartSlice = createSlice({
       } else state.totalPrice += action.payload;
     },
 
+    setAllProductsAvailable(state, action) {
+      state.allProductsAvailable = action.payload;
+    },
+    addProductToAllProductsAvailable(state, action) {
+      state.allProductsAvailable = [
+        action.payload,
+        ...state.allProductsAvailable,
+      ];
+    },
     // increase(state, action) {
     //   state.counter += action.payload;
     // },
