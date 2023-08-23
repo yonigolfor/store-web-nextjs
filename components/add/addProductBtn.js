@@ -32,8 +32,7 @@ export default function AddProductBtn() {
   return (
     <div>
       <div className={classes.container} onClick={opanProductModal}>
-        <h2 style={{ color: "grey", opacity: 0.9 }}>הוסף מוצר חדש</h2>
-        {/* <h1 className={classes.plus}>+</h1> */}
+        <h2 className={classes.text}>הוסף מוצר חדש</h2>
         <BsPlusCircleDotted className={classes.plus} size={100} />
       </div>
       {openModal && (

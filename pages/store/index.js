@@ -36,7 +36,6 @@ export default function Store() {
 
   return (
     <Fragment>
-      <Header />
       <h1>!המוצרים שלנו</h1>
       <div style={{ marginLeft: 40 }}>
         <SplitRowContainer>

@@ -26,8 +26,8 @@ export default function Product({ productName, image, description, price }) {
         height={180}
       />
       <h2>{productName}</h2>
-      <h4>{description}</h4>
-      <h5>{price}</h5>
+      <h4 style={{ fontSize: 16, margin: 3 }}>{description}</h4>
+      <h5 style={{ fontSize: 20 }}>{`${price}₪`}</h5>
       <div className="d-grid gap-2">
         <Button onClick={addToCartHandler} className="button" variant="primary">
           <BsFillCartFill color="black" size={24} /> הוסף לעגלה

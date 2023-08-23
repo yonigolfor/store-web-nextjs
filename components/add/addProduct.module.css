@@ -5,15 +5,27 @@
   padding: 20px 20px 0 20px;
   border-radius: 10px;
   width: 18rem;
-  /* height: fit-content; */
+  height: 20rem;
   text-align: center;
   cursor: pointer;
 }
+.container:hover {
+  background-color: rgb(193, 50, 50);
+  color: white;
+}
+
 .plus {
   /* font-size: 80px; */
   margin: 40px;
   color: grey;
   opacity: 0.8;
+}
+
+.text {
+  color: grey;
+  opacity: 0.9;
+  margin-top: 30px;
+  transform: rotate(-15deg);
 }
 
 /* .modal {
