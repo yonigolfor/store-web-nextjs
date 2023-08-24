@@ -11,6 +11,7 @@ const initialCartState = {
     // },
   ], // image, description
   totalPrice: 0,
+  deliveryPrice: 0,
 
   // possibility to add here the data of discountPercent, deliveryStyle
   discountPercent: null,
@@ -111,13 +112,13 @@ const cartSlice = createSlice({
     setTotalPrice(state, action) {
       state.totalPrice = action.payload;
     },
-    addDeliveryPrice(state, action) {
+    setDeliveryPrice(state, action) {
       if (state.discountPercent) {
-        state.totalPrice += priceAfterDiscount(
+        state.deliveryPrice = priceAfterDiscount(
           action.payload,
           state.discountPercent
         );
-      } else state.totalPrice += action.payload;
+      } else state.deliveryPrice = action.payload;
     },
 
     setAllProductsAvailable(state, action) {

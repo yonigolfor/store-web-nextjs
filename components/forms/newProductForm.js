@@ -10,6 +10,8 @@ import { cartActions } from "../../store/cart";
 export default function NewProductForm({ handleClose }) {
   // connection to db
   const [imageUploadBase64, setImageUploadBase64] = useState("");
+  const [isValid, setIsValid] = useState(true);
+  const errorMsg = "מלא את כל השדות";
   const prodNameRef = useRef();
   const prodPriceRef = useRef();
   const descriptionRef = useRef();
@@ -42,6 +44,15 @@ export default function NewProductForm({ handleClose }) {
     };
   }
 
+  function formIsValid(productData) {
+    return !(
+      !productData.image ||
+      !productData.image ||
+      !productData.price ||
+      !productData.description
+    );
+  }
+
   const createHandler = () => {
     const productData = {
       name: prodNameRef.current.value,
@@ -49,14 +60,16 @@ export default function NewProductForm({ handleClose }) {
       price: prodPriceRef.current.value,
       description: descriptionRef.current.value,
     };
-    if (!productData.image) return;
+    // console.log(productData);
+    if (!formIsValid(productData)) {
+      setIsValid(false);
+      return;
+    }
 
-    console.log(productData);
-
-    AddToDb(productData);
+    // AddToDb(productData);
 
     // update allAvailableProduct
-    dispatch(cartActions.addProductToAllProductsAvailable(productData));
+    // dispatch(cartActions.addProductToAllProductsAvailable(productData));
     handleClose();
   };
 
@@ -96,7 +109,7 @@ export default function NewProductForm({ handleClose }) {
         onChange={(e) => setImageUploadBase64(e.target.value)}
         style={{ margin: 5 }}
       />
-
+      {!isValid && <p style={{ color: "red" }}>{errorMsg}</p>}
       {/* For now get only url and updates productsList */}
       {/* <input
         className={classes.fileInput}

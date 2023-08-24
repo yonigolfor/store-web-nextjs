@@ -7,7 +7,7 @@ export default function Payment({ discountCode }) {
   return (
     <Fragment>
       <h1>סל הקניות</h1>
-      <PaymentTable />
+      <PaymentTable isOrderForm={true} />
       <DiscountForm discountCode={discountCode} />
       <OrderForm />
     </Fragment>

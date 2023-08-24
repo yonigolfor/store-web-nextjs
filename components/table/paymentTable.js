@@ -4,31 +4,19 @@ import classes from "./paymentTable.module.css";
 import { useEffect, useState } from "react";
 import { cartActions } from "../../store/cart";
 
-export default function PaymentTable() {
+export default function PaymentTable({ isOrderForm = false }) {
   // need to add delivery data to be able to show it on table
   // in case of summary page.
   // deliveryData = {deliveryStyle, price}
   const productsList = useSelector((state) => state.cart.productsList);
   // const [totalPrice, setTotalPrice] = useState(false);
   const deliveryData = useSelector((state) => state.cart.deliveryData);
-  const dispatch = useDispatch();
-  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  // const dispatch = useDispatch();
+  const totalPrice = isOrderForm
+    ? useSelector((state) => state.cart.totalPrice)
+    : useSelector((state) => state.cart.totalPrice) + // total cart price
+      useSelector((state) => state.cart.deliveryPrice); // added delivery price
   const discountPercent = useSelector((state) => state.cart.discountPercent);
-  console.log("totalPrice:", totalPrice);
-  console.log(deliveryData);
-
-  // useEffect(() => {
-  //   // effect on totalPrice DOM
-  //   const newPrice = getTotalPrice();
-  //   dispatch(cartActions.setTotalPrice(newPrice));
-  //   // setTotalPrice(getTotalPrice());
-  //   console.log("totalPrice:", totalPrice);
-
-  //   // dispatch(cartActions.setDiscountPercent(discountPercent));
-  // }, [
-  //   discountPercent,
-  //   // setTotalPrice
-  // ]);
 
   // function priceAfterDiscount(totalPrice, discountPercent) {
   //   const percent = 1 - discountPercent / 100;
@@ -67,7 +55,7 @@ export default function PaymentTable() {
             <td>{product.name}</td>
           </tr>
         ))}
-        {deliveryData.deliveryPrice ? (
+        {deliveryData.deliveryPrice && !isOrderForm ? (
           <tr>
             <td>{deliveryData.deliveryPrice}</td>
             <td></td>

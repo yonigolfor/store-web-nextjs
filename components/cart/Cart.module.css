@@ -21,6 +21,7 @@
   position: sticky;
   top: 90px;
   z-index: 0.5;
+  /* overflow-y: scroll; */
 }
 
 .p_class {

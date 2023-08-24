@@ -2,13 +2,15 @@ import { Fragment, useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import classes from "../../pages/payment/payment.module.css";
 import Button from "react-bootstrap/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart";
 
 export default function DiscountForm({ discountCode }) {
   const discountCodeRef = useRef();
   const discountAmount = 50;
-  const [codeVerified, setCodeVerified] = useState(false);
+  const discountValue =
+    useSelector((state) => state.cart.discountPercent) || false;
+  const [codeVerified, setCodeVerified] = useState(discountValue);
   const dispatch = useDispatch();
 
   function discountBtnHandler() {

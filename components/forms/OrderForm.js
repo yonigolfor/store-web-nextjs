@@ -32,7 +32,7 @@ export default function OrderForm() {
     ).deliveryPrice;
   }
 
-  const checkValidMail = () =>
+  const checkValidMail = (mail) =>
     /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(mail);
 
   function formIsFilled() {
@@ -41,28 +41,30 @@ export default function OrderForm() {
   }
 
   const sendBtnHandler = () => {
-    if (formIsFilled()) {
-      // add data to customer store
-      const deliveryDescription = deliveryRef.current.value;
-      const deliveryData = {
-        deliveryString: deliveryDescription,
-        deliveryPrice: extractNumOutOfDesc(deliveryDescription),
-      };
-      dispatch(cartActions.setDeliveryData(deliveryData));
-      if (deliveryData.deliveryPrice > 0)
-        dispatch(cartActions.addDeliveryPrice(deliveryData.deliveryPrice));
-      dispatch(
-        customerActions.setCustomerData({
-          email: emailRef.current.value,
-          fullName: fullNameRef.current.value,
-          phoneNumber: phoneNumberRef.current.value,
-          address: addressRef.current.value,
-          paymentMethod: paymentMethodRef.current.value,
-          userNotes: notesRef.current.value,
-        })
-      );
-      router.push("/orderSummary");
-    } else window.alert("מלא את כל שדות החובה");
+    if (!formIsFilled()) {
+      window.alert("מלא את כל שדות החובה");
+      return;
+    }
+    // add data to customer store
+    const deliveryDescription = deliveryRef.current.value;
+    const deliveryData = {
+      deliveryString: deliveryDescription,
+      deliveryPrice: extractNumOutOfDesc(deliveryDescription),
+    };
+    dispatch(cartActions.setDeliveryData(deliveryData));
+    if (deliveryData.deliveryPrice > 0)
+      dispatch(cartActions.setDeliveryPrice(deliveryData.deliveryPrice));
+    dispatch(
+      customerActions.setCustomerData({
+        email: emailRef.current.value,
+        fullName: fullNameRef.current.value,
+        phoneNumber: phoneNumberRef.current.value,
+        address: addressRef.current.value,
+        paymentMethod: paymentMethodRef.current.value,
+        userNotes: notesRef.current.value,
+      })
+    );
+    router.push("/orderSummary");
   };
 
   return (
